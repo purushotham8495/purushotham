@@ -1,0 +1,364 @@
+// 6. Design, Develop and implement a menu driven program in C for the following
+// operations on Doubly linked list of Professor data with the fields:ID,Name,Branch,Area
+// of specialization
+// a. Create a DLL stack of N Professor’s data.
+// b. Create a DLL queue of N Professor’s data.
+// Display the status of DLL and count the number of nodes in it.
+#include <stdio.h>
+#include <stdlib.h>
+struct DLL
+{
+    char ssn[10], name[20], dept[10], design[10];
+    int sal, pno;
+    struct DLL *prev, *next;
+};
+typedef struct DLL node;
+node *start = NULL;
+void display()
+{
+    int count = 0;
+    node *temp = start;
+    if (start == NULL)
+    {
+        printf("\nList is empty\n");
+        return;
+    }
+    printf("\nProfessor's details are:\n");
+    while (temp != NULL)
+    {
+        printf("\n%s \t%s \t%s \t%s \t%d \t%d", temp->ssn, temp->name, temp->dept, temp->design, temp->sal, temp->pno);
+        temp = temp->next;
+        count++;
+    }
+    printf("\nNumber of nodes in list is %d", count);
+}
+node *create()
+{
+    node *new1;
+    new1 = (node *)malloc(sizeof(node));
+    printf("\nEnter the ssn,name,department,designation,salary,phoneno.");
+    scanf("%s %s %s %s %d %d", new1->ssn, new1->name, new1->dept, new1->design, &new1->sal, &new1->pno);
+    new1->prev = new1->next = NULL;
+    return new1;
+}
+void insertfront()
+{
+    node *new1;
+    new1 = create();
+    if (start == NULL)
+    {
+        start = new1;
+        return;
+    }
+    new1->next = start;
+    start = new1;
+}
+void insertrear()
+{
+    node *new1, *temp = start;
+    new1 = create();
+    if (start == NULL)
+    {
+        start = new1;
+        return;
+    }
+    while (temp->next != NULL)
+        temp = temp->next;
+    temp->next = new1;
+    new1->prev = temp;
+}
+void deletefront()
+{
+    if (start == NULL)
+    {
+        printf("\n List is empty\n");
+        return;
+    }
+    printf("\n Deleted record with ssn=%s\n", start->ssn);
+    if (start->next == NULL)
+    {
+        free(start);
+        start = NULL;
+        return;
+    }
+    start = start->next;
+    free(start->prev);
+    start->prev = NULL;
+}
+int main()
+{
+    int ch, choice1, choice2;
+    printf("\n 1.DLL Stack of Professor's data\n2.DLL Queue of Professor's data\n");
+    printf("Enter your choice\n");
+    scanf("%d", &ch);
+    switch (ch)
+    {
+    case 1:
+        while (1)
+        {
+            printf("\nDLL Stack");
+            printf("\n1.Insert \n2.Delete \n3.Display \n4.Exit");
+            printf("\nEnter your choice\n");
+            scanf("%d", &choice1);
+            switch (choice1)
+            {
+            case 1:
+                insertfront();
+                break;
+            case 2:
+                deletefront();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            }
+        }
+        break;
+    case 2:
+        while (1)
+        {
+            printf("\nDLL Queue");
+            printf("\n1.Insert \n2.Delete \n3.Display \n4.Exit");
+            printf("\nEnter your choice\n");
+            scanf("%d", &choice2);
+            switch (choice2)
+            {
+            case 1:
+                insertrear();
+                break;
+            case 2:
+                deletefront();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            }
+        }
+        break;
+    }
+}
+/*
+Output1:
+1.DLL Stack of Professor's data
+2.DLL Queue of Professor's data
+Enter your choice
+1
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.1harish
+IS
+professor
+123456
+485928473
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.2
+anitha
+IS
+lecturer
+93746
+264836483
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.3
+alice
+IS
+faculty
+56734
+824756284
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+3
+Professor's details are:
+3
+alice IS
+faculty
+56734 824756284
+2
+anitha IS
+lecturer
+93746 264836483
+1
+harish IS
+professor
+123456 485928473
+Number of nodes in list is 3DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+Deleted record with ssn=3
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+Deleted record with ssn=2
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+Deleted record with ssn=1
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+List is empty
+DLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+3
+List is emptyDLL Stack
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+4
+Output 2:
+1.DLL Stack of Professor's data
+2.DLL Queue of Professor's data
+Enter your choice
+2
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.1
+harish
+IS
+professor
+123456
+485928473
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.2
+anitha
+IS
+lecturer
+93746
+264836483
+DLL Queue
+1.Insert
+2.Delete3.Display
+4.Exit
+Enter your choice
+1
+Enter the ssn,name,department,designation,salary,phoneno.3
+alice
+IS
+faculty
+56734
+824756284
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+3
+Professor's details are:
+1
+harish IS
+professor
+123456 485928473
+2
+anitha IS
+lecturer
+93746 264836483
+3
+alice IS
+faculty
+56734 824756284
+Number of nodes in list is 3
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+Deleted record with ssn=1
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+Deleted record with ssn=2
+DLL Queue
+1.Insert
+2.Delete
+3.Display4.Exit
+Enter your choice
+2
+Deleted record with ssn=3
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+2
+List is empty
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+3
+List is empty
+DLL Queue
+1.Insert
+2.Delete
+3.Display
+4.Exit
+Enter your choice
+4
+*/
