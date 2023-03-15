@@ -1,5 +1,4 @@
-/* Police Station Management System using C++ and compiled using GCC Compiler */
-
+//Police Station Management System
 #include<iostream>
 #include<conio.h>
 #include<ctype.h>
@@ -17,9 +16,8 @@
 
 using namespace std;
 
-/* Defining functions */
 
-int login();      // function for loginscreen
+int login();      // function for login
 void mainpage();  // function to display mainpage
 void date1();     // to get current date
 void delay();     // function for loading effect
@@ -88,7 +86,7 @@ int login()
     cout << "\t\t\t\t\t";
     cout << "Password : ";
     cin >> password;
-    if(strcmp(username,"INFINITY")==0 && strcmp(password,"password")==0)
+    if(strcmp(username,"INFINITY")==0 && strcmp(password,"PASSWORD")==0)
       {
         cout << "\n\n";
         cout << "\t\t\t\t";
@@ -144,7 +142,10 @@ void mainpage()
   cout <<"\t\t\t\t";
   cout <<"Prepared By    ";
   cout <<":";
-  cout <<"   Team INFINITY";
+  cout <<"   TEAM INFINITY\n";
+  cout<<"\t\t\t\t\t\t    Purushotham N K\n";
+  cout<<"\t\t\t\t\t\t    Pramanth P A\n";
+  cout<<"\t\t\t\t\t\t    Prashanth D M";
   cout <<"\n\n";
   cout <<"\t\t\t\t";
   cout <<"Mini Project   ";
@@ -253,13 +254,17 @@ void menu(criminal l)
     cout << "\t\t\t\t" ;
     cout << " 6. EXIT\n\n" ;
     cout << "\t\t\t\t" ;
-    cout << "Choose Option:[1/2/3/4/5/6] : " ;
+    cout << "Choose Option [1/2/3/4/5/6] : " ;
     fflush(stdin);
     cin >> input;
     switch(input)
     {
       case 1:
       {
+      	cout << "\nRules for Convict 5 Digit ID";
+  cout << "\n \t\t 1)First digit type of crime\t 1-Murder\t2-Robbery\t3-Accident\t4-Missing\t";
+  cout << "\n \t\t 2)Next 2 digits area code";
+  cout << "\n \t\t 3)Next 2 Special Id for Convict";
         l.input();
         break;
       }
@@ -342,8 +347,6 @@ int criminal::s_check(char a[])
 }
 
 void criminal::input()      // Function for getting Convicts Record
-
-
 {
   system("cls");
   this->empty();
@@ -354,8 +357,12 @@ void criminal::input()      // Function for getting Convicts Record
   filin.open("jail.txt",ios::app);
 
   while(c != 1)
-  {
-    cout << "\n\n\n\tENTER THE CONVICT ID : ";
+  {	
+  	  cout << "\n \t\t Rules for Convict 5 Digit ID";
+  cout << "\n \t\t 1)First digit type of crime\t 1-Murder\t2-Robbery\t3-Accident\t4-Missing\t";
+  cout << "\n \t\t 2)Next 2 digits area code";
+  cout << "\n \t\t 3)Next 2 Special Id for Convict";
+    cout << "\n\n\n\tENTER THE 5 Digit CONVICT ID : ";
     cin >> (this->conno);
     c = x.concheck(this->conno);
     fflush(stdin);
@@ -671,7 +678,11 @@ void criminal::display()    // function to display record
   char N[10];
   int rec;
   int loc;
-  cout << "\n\n\n\t\tENTER THE CONVICT ID : ";
+  cout << "\n \t\t Rules for Convict 5 Digit ID";
+  cout << "\n \t\t 1)First digit type of crime\t 1-Murder\t2-Robbery\t3-Accident\t4-Missing\t";
+  cout << "\n \t\t 2)Next 2 digits area code";
+  cout << "\n \t\t 3)Next 2 Special Id for Convict";
+  cout << "\n\n\n\t\tENTER THE CONVICT 5 Digit ID : ";
   gets(N);
   fstream file;
   rec = this->dcheck(N);
@@ -694,7 +705,11 @@ void criminal::remove()
   system("cls");
   char no[10];
   int s;
-  cout << "\n\n\n\t\tENTER THE CONVICT ID : ";
+    cout << "\n \t\t Rules for Convict 5 Digit ID";
+  cout << "\n \t\t 1)First digit type of crime\t 1-Murder\t2-Robbery\t3-Accident\t4-Missing\t";
+  cout << "\n \t\t 2)Next 2 digits area code";
+  cout << "\n \t\t 3)Next 2 Special Id for Convict";
+  cout << "\n\n\n\t\tENTER THE CONVICT 5 Digit ID : ";
   gets(no);
   s = this->dcheck(no);
   if(s!=0)
@@ -714,7 +729,11 @@ void criminal::modify() // function to modify record
   date D;
   fflush(stdin);
   modify_start:
-  cout << "\n\tENTER CONVICT ID : ";
+  	  cout << "\n \t\t Rules for Convict 5 Digit ID";
+  cout << "\n \t\t 1)First digit type of crime\t 1-Murder\t2-Robbery\t3-Accident\t4-Missing\t";
+  cout << "\n \t\t 2)Next 2 digits area code";
+  cout << "\n \t\t 3)Next 2 Special Id for Convict";
+  cout << "\n\tENTER 5 digit CONVICT ID : ";
   gets(str);
   check = this->dcheck(str);
   if(check != 0)
@@ -794,7 +813,7 @@ void criminal::modify() // function to modify record
     {
       cout<<"\n\t\t\t\t\t Year(in 4 digits) : ";
       cin >> D.y;
-      if((D.y <= 1930)||(D.y>2017) )
+      if((D.y <= 1930)||(D.y>2024) )
       {
         cout << "\n\t\tINCORRECT INPUT, TRY AGAIN!!\n";
         c = 0;
