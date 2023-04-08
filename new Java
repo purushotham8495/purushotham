@@ -1,0 +1,819 @@
+//Prog 1
+import java.util.Scanner;
+
+public class ArmstrongNumbers {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the limit: ");
+        int limit = input.nextInt();
+
+        for (int i = 1; i <= limit; i++) {
+            int sum = 0;
+            int temp = i;
+            int digits = String.valueOf(i).length();
+
+            while (temp > 0) {
+                int digit = temp % 10;
+                sum += Math.pow(digit, digits);
+                temp /= 10;
+            }
+
+            if (sum == i) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+//prog 2
+import java.util.Scanner;
+
+public class FibonacciSeries {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the number of terms: ");
+        int n = input.nextInt();
+
+        int first = 0, second = 1;
+
+        System.out.print("Fibonacci series up to " + n + " terms: ");
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(first + " ");
+
+            int sum = first + second;
+            first = second;
+            second = sum;
+        }
+    }
+}
+//prog 3
+import java.util.Scanner;
+
+public class SwapNumbers {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        int num1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int num2 = input.nextInt();
+
+        System.out.println("Before swapping: ");
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2);
+
+        int temp = num1;
+        num1 = num2;
+        num2 = temp;
+
+        System.out.println("After swapping: ");
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2);
+    }
+}
+//prog 4
+import java.util.Scanner;
+
+public class VowelConsonantChecker {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter an alphabet: ");
+        char ch = input.next().charAt(0);
+
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            System.out.println(ch + " is a vowel.");
+        } else {
+            System.out.println(ch + " is a consonant.");
+        }
+    }
+}
+//prog 5
+import java.util.Scanner;
+
+public class GCD {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        int num1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int num2 = input.nextInt();
+
+        int gcd = 1;
+
+        for (int i = 1; i <= num1 && i <= num2; i++) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                gcd = i;
+            }
+        }
+
+        System.out.println("GCD of " + num1 + " and " + num2 + " is: " + gcd);
+    }
+}
+//prog 6
+import java.util.Scanner;
+
+public class LeapYear {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a year: ");
+        int year = input.nextInt();
+
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+    }
+}
+//prog 7
+import java.util.Scanner;
+
+public class NeonNumber {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        int square = num * num;
+        int sumOfDigits = 0;
+
+        while (square != 0) {
+            int digit = square % 10;
+            sumOfDigits += digit;
+            square /= 10;
+        }
+
+        if (sumOfDigits == num) {
+            System.out.println(num + " is a neon number.");
+        } else {
+            System.out.println(num + " is not a neon number.");
+        }
+    }
+}
+//prog 8
+import java.util.Scanner;
+
+public class EvenOrOdd {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        if (num % 2 == 0) {
+            System.out.println(num + " is even.");
+        } else {
+            System.out.println(num + " is odd.");
+        }
+    }
+}
+//prog 9
+import java.util.Scanner;
+
+public class TriangleArea {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the base of the triangle: ");
+        double base = input.nextDouble();
+        System.out.print("Enter the height of the triangle: ");
+        double height = input.nextDouble();
+
+        double area = (base * height) / 2;
+
+        System.out.println("The area of the triangle is: " + area);
+    }
+}
+//prog 10
+import java.util.Scanner;
+
+public class StringReverse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = input.nextLine();
+
+        String reverse = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reverse += str.charAt(i);
+        }
+
+        System.out.println("The reversed string is: " + reverse);
+    }
+}
+
+
+//001
+import java.util.Scanner;
+
+public class QuadraticEquation {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a: ");
+        double a = input.nextDouble();
+        System.out.print("Enter b: ");
+        double b = input.nextDouble();
+        System.out.print("Enter c: ");
+        double c = input.nextDouble();
+
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant > 0) {
+            double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            System.out.println("The equation has two real roots: " + root1 + " and " + root2);
+        } else if (discriminant == 0) {
+            double root = -b / (2 * a);
+            System.out.println("The equation has one real root: " + root);
+        } else {
+            System.out.println("The equation has no real roots.");
+        }
+    }
+}
+//002
+import java.util.Scanner;
+
+class Student {
+    String usn;
+    String name;
+    String branch;
+    String phone;
+
+    public void setDetails() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter USN: ");
+        usn = input.nextLine();
+        System.out.print("Enter Name: ");
+        name = input.nextLine();
+        System.out.print("Enter Branch: ");
+        branch = input.nextLine();
+        System.out.print("Enter Phone: ");
+        phone = input.nextLine();
+    }
+
+    public void displayDetails() {
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+        System.out.println("Branch: " + branch);
+        System.out.println("Phone: " + phone);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the number of students: ");
+        int n = input.nextInt();
+
+        Student[] students = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for Student " + (i+1) + ":");
+            students[i] = new Student();
+            students[i].setDetails();
+        }
+
+        System.out.println("\nStudent Details:");
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nStudent " + (i+1) + ":");
+            students[i].displayDetails();
+        }
+    }
+}
+//003
+
+import java.util.Scanner;
+
+public class PrimeNumber {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        boolean isPrime = true;
+
+        if (num <= 1) {
+            isPrime = false;
+        }
+        else {
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+        }
+
+        if (isPrime) {
+            System.out.println(num + " is a prime number.");
+        }
+        else {
+            System.out.println(num + " is not a prime number.");
+        }
+    }
+}
+
+
+import java.util.Scanner;
+
+public class ArithmeticCalculator {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Division");
+        System.out.print("Enter your choice: ");
+        int choice = input.nextInt();
+
+        System.out.print("Enter first number: ");
+        double num1 = input.nextDouble();
+        System.out.print("Enter second number: ");
+        double num2 = input.nextDouble();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Sum: " + (num1 + num2));
+                break;
+            case 2:
+                System.out.println("Difference: " + (num1 - num2));
+                break;
+            case 3:
+                System.out.println("Product: " + (num1 * num2));
+                break;
+            case 4:
+                if (num2 == 0) {
+                    System.out.println("Error: Division by zero");
+                }
+                else {
+                    System.out.println("Quotient: " + (num1 / num2));
+                }
+                break;
+            default:
+                System.out.println("Error: Invalid choice");
+        }
+    }
+}
+//004
+import java.util.Scanner;
+
+class Staff {
+    String staffId;
+    String name;
+    String phone;
+    double salary;
+
+    public Staff(String staffId, String name, String phone, double salary) {
+        this.staffId = staffId;
+        this.name = name;
+        this.phone = phone;
+        this.salary = salary;
+    }
+
+    public void display() {
+        System.out.println("Staff ID: " + staffId);
+        System.out.println("Name: " + name);
+        System.out.println("Phone: " + phone);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Teaching extends Staff {
+    String domain;
+    String publications;
+
+    public Teaching(String staffId, String name, String phone, double salary, String domain, String publications) {
+        super(staffId, name, phone, salary);
+        this.domain = domain;
+        this.publications = publications;
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Domain: " + domain);
+        System.out.println("Publications: " + publications);
+    }
+}
+
+class Technical extends Staff {
+    String skills;
+
+    public Technical(String staffId, String name, String phone, double salary, String skills) {
+        super(staffId, name, phone, salary);
+        this.skills = skills;
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Skills: " + skills);
+    }
+}
+
+class Contract extends Staff {
+    int period;
+
+    public Contract(String staffId, String name, String phone, double salary, int period) {
+        super(staffId, name, phone, salary);
+        this.period = period;
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Period: " + period + " months");
+    }
+}
+
+public class StaffManagement {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        Teaching t1 = new Teaching("T001", "John", "1234567890", 50000, "Computer Science", "10 papers");
+        Technical tech1 = new Technical("T002", "Jane", "0987654321", 40000, "Java, Python, SQL");
+        Contract c1 = new Contract("C001", "Mary", "9876543210", 30000, 6);
+
+        t1.display();
+        System.out.println();
+        tech1.display();
+        System.out.println();
+        c1.display();
+    }
+}
+
+
+//005
+public class OverloadingExample {
+
+    // Method Overloading
+    public void printNumber(int num) {
+        System.out.println("The number is: " + num);
+    }
+
+    public void printNumber(double num) {
+        System.out.println("The number is: " + num);
+    }
+
+    // Constructor Overloading
+    public OverloadingExample() {
+        System.out.println("Default constructor called");
+    }
+
+    public OverloadingExample(int num) {
+        System.out.println("Parameterized constructor called with number: " + num);
+    }
+
+    public static void main(String[] args) {
+
+        // Method Overloading
+        OverloadingExample obj = new OverloadingExample();
+        obj.printNumber(5);
+        obj.printNumber(5.5);
+
+        // Constructor Overloading
+        OverloadingExample obj2 = new OverloadingExample();
+        OverloadingExample obj3 = new OverloadingExample(10);
+    }
+}
+
+//006
+
+package converters.currency;
+
+public class CurrencyConverter {
+    public static double dollarToINR(double amount) {
+        return amount * 73.15; // 1 USD = 73.15 INR
+    }
+
+    public static double euroToINR(double amount) {
+        return amount * 86.99; // 1 EUR = 86.99 INR
+    }
+
+    public static double yenToINR(double amount) {
+        return amount * 0.68; // 1 JPY = 0.68 INR
+    }
+
+    public static double inrToDollar(double amount) {
+        return amount / 73.15; // 1 USD = 73.15 INR
+    }
+
+    public static double inrToEuro(double amount) {
+        return amount / 86.99; // 1 EUR = 86.99 INR
+    }
+
+    public static double inrToYen(double amount) {
+        return amount / 0.68; // 1 JPY = 0.68 INR
+    }
+}
+
+
+
+
+package converters.distance;
+
+public class DistanceConverter {
+    public static double metersToKm(double distance) {
+        return distance / 1000; // 1 m = 0.001 km
+    }
+
+    public static double kmToMeters(double distance) {
+        return distance * 1000; // 1 km = 1000 m
+    }
+
+    public static double milesToKm(double distance) {
+        return distance * 1.609; // 1 mile = 1.609 km
+    }
+
+    public static double kmToMiles(double distance) {
+        return distance / 1.609; // 1 km = 0.621 miles
+    }
+}
+
+
+package converters.time;
+
+public class TimeConverter {
+    public static int hoursToMinutes(int hours) {
+        return hours * 60; // 1 hour = 60 minutes
+    }
+
+    public static int minutesToHours(int minutes) {
+        return minutes / 60; // 1 hour = 60 minutes
+    }
+
+    public static int hoursToSeconds(int hours) {
+        return hours * 3600; // 1 hour = 3600 seconds
+    }
+
+    public static int secondsToHours(int seconds) {
+        return seconds / 3600; // 1 hour = 3600 seconds
+    }
+}
+
+
+import converters.currency.CurrencyConverter;
+import converters.distance.DistanceConverter;
+import converters.time.TimeConverter;
+
+public class Main {
+    public static void main(String[] args) {
+        // Currency Converter
+        double dollarAmount = 100;
+        double euroAmount = 50;
+        double yenAmount = 5000;
+
+        System.out.println(dollarAmount + " USD = " + CurrencyConverter.dollarToINR(dollarAmount) + " INR");
+        System.out.println(euroAmount + " EUR = " + CurrencyConverter.euroToINR(euroAmount) + " INR");
+        System.out.println(yenAmount + " JPY = " + CurrencyConverter.yenToINR(yenAmount) + " INR");
+
+        System.out.println(CurrencyConverter.inrToDollar(7315) + " USD = 7315 INR");
+        System.out.println(CurrencyConverter.inrToEuro(8699) + " EUR = 8699 INR");
+        System.out.println(CurrencyConverter.inrToYen(680)
+
+//007
+
+
+
+//008
+
+import java.util.Random;
+
+public class MultiThreadExample {
+
+    public static void main(String[] args) {
+        RandomNumberGenerator rng = new RandomNumberGenerator();
+        SquarePrinter sp = new SquarePrinter();
+        CubePrinter cp = new CubePrinter();
+        
+        rng.start();
+        sp.start();
+        cp.start();
+    }
+    
+    static class RandomNumberGenerator extends Thread {
+        public void run() {
+            Random rand = new Random();
+            while (true) {
+                int num = rand.nextInt(100);
+                System.out.println("Generated Number: " + num);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    static class SquarePrinter extends Thread {
+        public void run() {
+            while (true) {
+                int num = RandomNumberGenerator.rand.nextInt(100);
+                System.out.println("Square of " + num + " is " + (num * num));
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    static class CubePrinter extends Thread {
+        public void run() {
+            while (true) {
+                int num = RandomNumberGenerator.rand.nextInt(100);
+                System.out.println("Cube of " + num + " is " + (num * num * num));
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+}
+//009
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StringOperations {
+    public static void main(String[] args) {
+        ArrayList<String> stringList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        int choice = 0;
+        while (choice != 5) {
+            System.out.println("\nMENU");
+            System.out.println("1. Append a string");
+            System.out.println("2. Insert a string at a particular index");
+            System.out.println("3. Search a string");
+            System.out.println("4. List all strings that start with a given letter");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a string to append: ");
+                    String appendStr = scanner.nextLine();
+                    stringList.add(appendStr);
+                    System.out.println("String \"" + appendStr + "\" appended to the list.");
+                    break;
+
+                case 2:
+                    System.out.print("Enter a string to insert: ");
+                    String insertStr = scanner.nextLine();
+
+                    System.out.print("Enter the index to insert at: ");
+                    int insertIndex = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline character
+
+                    if (insertIndex < 0 || insertIndex > stringList.size()) {
+                        System.out.println("Invalid index.");
+                    } else {
+                        stringList.add(insertIndex, insertStr);
+                        System.out.println("String \"" + insertStr + "\" inserted at index " + insertIndex + ".");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter a string to search: ");
+                    String searchString = scanner.nextLine();
+
+                    if (stringList.contains(searchString)) {
+                        System.out.println("String \"" + searchString + "\" found at index " + stringList.indexOf(searchString) + ".");
+                    } else {
+                        System.out.println("String \"" + searchString + "\" not found in the list.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter the letter to filter strings: ");
+                    char filterLetter = scanner.nextLine().charAt(0);
+
+                    System.out.println("Strings that start with letter '" + filterLetter + "':");
+                    for (String str : stringList) {
+                        if (str.charAt(0) == filterLetter) {
+                            System.out.println(str);
+                        }
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Exiting the program.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+//10
+
+import java.util.Scanner;
+
+public class DivideTwoNumbers {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the value of a: ");
+        int a = sc.nextInt();
+        System.out.print("Enter the value of b: ");
+        int b = sc.nextInt();
+        try {
+            if (b == 0) {
+                throw new ArithmeticException("Error: Division by zero is undefined");
+            } else {
+                int result = a / b;
+                System.out.println("The result of a/b is: " + result);
+            }
+        } catch (ArithmeticException ex) {
+            System.out.println(ex.getMessage());
+        }
+        sc.close();
+    }
+}
+//011
+
+import java.io.File;
+
+public class FileInfo {
+    public static void main(String[] args) {
+        // Get the file name from the user
+        String fileName = "example.txt"; // Replace this with your own file name
+
+        // Create a File object
+        File file = new File(fileName);
+
+        // Check if the file exists
+        if (file.exists()) {
+            System.out.println("File exists.");
+
+            // Check if the file is readable
+            if (file.canRead()) {
+                System.out.println("File is readable.");
+            } else {
+                System.out.println("File is not readable.");
+            }
+
+            // Check if the file is writable
+            if (file.canWrite()) {
+                System.out.println("File is writable.");
+            } else {
+                System.out.println("File is not writable.");
+            }
+
+            // Get the type of file
+            String fileType = getFileType(fileName);
+            System.out.println("File type: " + fileType);
+
+            // Get the length of the file in bytes
+            long fileSize = file.length();
+            System.out.println("File size: " + fileSize + " bytes");
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    // Helper function to get the type of file
+    private static String getFileType(String fileName) {
+        String fileType = "Unknown";
+        int dotIndex = fileName.lastIndexOf(".");
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            String extension = fileName.substring(dotIndex + 1).toLowerCase();
+            switch (extension) {
+                case "txt":
+                    fileType = "Text";
+                    break;
+                case "pdf":
+                    fileType = "PDF";
+                    break;
+                case "doc":
+                case "docx":
+                    fileType = "Microsoft Word";
+                    break;
+                case "xls":
+                case "xlsx":
+                    fileType = "Microsoft Excel";
+                    break;
+                case "ppt":
+                case "pptx":
+                    fileType = "Microsoft PowerPoint";
+                    break;
+                default:
+                    fileType = "Unknown";
+                    break;
+            }
+        }
+        return fileType;
+    }
+}
+
+
