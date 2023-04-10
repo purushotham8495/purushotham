@@ -231,345 +231,381 @@ public class QuadraticEquation {
     }
 }
 //002
-import java.util.Scanner;
-
-class Student {
-    String usn;
-    String name;
-    String branch;
-    String phone;
-
-    public void setDetails() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter USN: ");
-        usn = input.nextLine();
-        System.out.print("Enter Name: ");
-        name = input.nextLine();
-        System.out.print("Enter Branch: ");
-        branch = input.nextLine();
-        System.out.print("Enter Phone: ");
-        phone = input.nextLine();
+import java.util.*;
+public class Student {
+    String USN, NAME, Branch, Phone;
+    public Student(String usn, String name, String branch, String phone ) {
+        USN=usn;
+        NAME=name;
+        Branch=branch;
+        Phone =phone;
     }
-
-    public void displayDetails() {
-        System.out.println("USN: " + usn);
-        System.out.println("Name: " + name);
-        System.out.println("Branch: " + branch);
-        System.out.println("Phone: " + phone);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the number of students: ");
-        int n = input.nextInt();
-
-        Student[] students = new Student[n];
-
-        for (int i = 0; i < n; i++) {
-            System.out.println("Enter details for Student " + (i+1) + ":");
-            students[i] = new Student();
-            students[i].setDetails();
+    public static void main(String []args) {
+        Scanner input=new Scanner(System.in);
+        int n= input.nextInt();
+        Student [] st= new Student[n];
+        String usn,name,branch,phone;
+        for(int i=0; i<n; i++) {
+            System.out.println("Student"+(i+1));
+            usn=input.next();
+            name=input.next();
+            branch=input.next();
+            phone=input.next();
+            st[i]=new Student(usn,name,branch,phone);
         }
-
-        System.out.println("\nStudent Details:");
-        for (int i = 0; i < n; i++) {
-            System.out.println("\nStudent " + (i+1) + ":");
-            students[i].displayDetails();
-        }
-    }
-}
-//003
-
-import java.util.Scanner;
-
-public class PrimeNumber {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int num = input.nextInt();
-
-        boolean isPrime = true;
-
-        if (num <= 1) {
-            isPrime = false;
-        }
-        else {
-            for (int i = 2; i <= Math.sqrt(num); i++) {
-                if (num % i == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-        }
-
-        if (isPrime) {
-            System.out.println(num + " is a prime number.");
-        }
-        else {
-            System.out.println(num + " is not a prime number.");
-        }
-    }
-}
-
-
-import java.util.Scanner;
-
-public class ArithmeticCalculator {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("1. Addition");
-        System.out.println("2. Subtraction");
-        System.out.println("3. Multiplication");
-        System.out.println("4. Division");
-        System.out.print("Enter your choice: ");
-        int choice = input.nextInt();
-
-        System.out.print("Enter first number: ");
-        double num1 = input.nextDouble();
-        System.out.print("Enter second number: ");
-        double num2 = input.nextDouble();
-
-        switch (choice) {
-            case 1:
-                System.out.println("Sum: " + (num1 + num2));
-                break;
-            case 2:
-                System.out.println("Difference: " + (num1 - num2));
-                break;
-            case 3:
-                System.out.println("Product: " + (num1 * num2));
-                break;
-            case 4:
-                if (num2 == 0) {
-                    System.out.println("Error: Division by zero");
-                }
-                else {
-                    System.out.println("Quotient: " + (num1 / num2));
-                }
-                break;
-            default:
-                System.out.println("Error: Invalid choice");
+         System.out.println("Student details\n USN\tNAME\tBRANCH\tPHONE\t");
+        for(int i=0; i<n; i++) {
+            System.out.println(st[i].USN+"\t"+st[i].NAME+"\t"+st[i].Branch+"\t"+st[i].Phone+"\t");
         }
     }
 }
 //004
+package Inheritance;
+
+import java.io.*;
 import java.util.Scanner;
+class Staff
+{
+private int StaffId;
+private String Name;
+private String Phone;
+private long Salary;
+public Staff(int staffId,String name,String phone,long salary)
+{
 
-class Staff {
-    String staffId;
-    String name;
-    String phone;
-    double salary;
-
-    public Staff(String staffId, String name, String phone, double salary) {
-        this.staffId = staffId;
-        this.name = name;
-        this.phone = phone;
-        this.salary = salary;
-    }
-
-    public void display() {
-        System.out.println("Staff ID: " + staffId);
-        System.out.println("Name: " + name);
-        System.out.println("Phone: " + phone);
-        System.out.println("Salary: " + salary);
-    }
+Name = name;
+Phone = phone;
+Salary = salary;
 }
-
-class Teaching extends Staff {
-    String domain;
-    String publications;
-
-    public Teaching(String staffId, String name, String phone, double salary, String domain, String publications) {
-        super(staffId, name, phone, salary);
-        this.domain = domain;
-        this.publications = publications;
-    }
-
-    public void display() {
-        super.display();
-        System.out.println("Domain: " + domain);
-        System.out.println("Publications: " + publications);
-    }
+public void Display()
+{
+System.out.print("\t"+StaffId+"\t"+Name+"\t"+Phone+"\t"+Salary);
 }
-
-class Technical extends Staff {
-    String skills;
-
-    public Technical(String staffId, String name, String phone, double salary, String skills) {
-        super(staffId, name, phone, salary);
-        this.skills = skills;
-    }
-
-    public void display() {
-        super.display();
-        System.out.println("Skills: " + skills);
-    }
 }
-
-class Contract extends Staff {
-    int period;
-
-    public Contract(String staffId, String name, String phone, double salary, int period) {
-        super(staffId, name, phone, salary);
-        this.period = period;
-    }
-
-    public void display() {
-        super.display();
-        System.out.println("Period: " + period + " months");
-    }
+class Teaching extends Staff
+{
+private String Domain;
+private int Publications;
+public Teaching(int staffId, String name, String phone, long salary, String domain, int publications)
+{
+super(staffId, name, phone, salary);
+Domain = domain;
+Publications = publications;
 }
-
-public class StaffManagement {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        Teaching t1 = new Teaching("T001", "John", "1234567890", 50000, "Computer Science", "10 papers");
-        Technical tech1 = new Technical("T002", "Jane", "0987654321", 40000, "Java, Python, SQL");
-        Contract c1 = new Contract("C001", "Mary", "9876543210", 30000, 6);
-
-        t1.display();
-        System.out.println();
-        tech1.display();
-        System.out.println();
-        c1.display();
-    }
+public void Display()
+{
+super.Display();
+System.out.print("\t"+Domain+"\t"+Publications+"\t\t"+"--"+"\t"+"--");
 }
+}
+class Technical extends Staff
+{
+private String Skills;
+public Technical(int staffId, String name, String phone, long salary, String skills)
+{
+super(staffId, name, phone, salary);
+Skills = skills;
+}
+public void Display()
+{
+super.Display();
+System.out.print("\t"+"--"+"\t"+"--"+"\t\t"+Skills+"\t"+"--");
+}
+}
+class Contract extends Staff
+{
+private int Period;
+public Contract(int staffId, String name, String phone, long salary, int period)
+{
+super(staffId, name, phone, salary);
+this.Period = period;
+}
+public void Display()
+{
 
+super.Display();
+System.out.print("\t"+"--"+"\t"+"--"+"\t\t"+"--"+"\t"+Period);
+}
+}
+public class StaffManagement{
+public static void main(String[] args)
+{
+int StaffId;
+String Name,Phone;
+long Salary;
+String Domain;
+int Publications;
+String Skills;
+int Period;
+Scanner sc=new Scanner(System.in);
+Staff staff[]=new Staff[50];
+System.out.println("Enter number of Teaching Staff : ");
+int n = sc.nextInt();
+for(int i=1;i<=n;i++)
+{
+System.out.println("Enter " + i + " Teaching Staff details:”+ Staff ID, Name, Phone, Salary,Domain,Publication");
+StaffId = sc.nextInt();
+Name = sc.next();
+Phone = sc.next();
+Salary = sc.nextLong();
+Domain = sc.next();
+Publications = sc.nextInt();
+staff[i]=new Teaching(StaffId, Name, Phone, Salary, Domain,Publications);
+}
+System.out.println("Enter number of Technical Staff : ");
+int m = sc.nextInt();
+for(int i=n+1;i<=m+n;i++)
+{
+System.out.println("Enter " + i + " Technical Staff details :Staff ID,Name,Phone, Salary, Skills");
+StaffId = sc.nextInt();
+Name = sc.next();
+Phone = sc.next();
+Salary = sc.nextLong();
+Skills = sc.next();
+staff[i]=new Technical(StaffId,Name,Phone,Salary,Skills);
+}
+System.out.println("Enter number of Contract Staff : ");
+int p = sc.nextInt();
+for(int i=n+m+1;i<=m+n+p;i++)
+{
 
+System.out.println("Enter " + i + " Contract Staff details:”+StaffID,Name, Phone, Salary, Period");
+StaffId = sc.nextInt();
+Name = sc.next();
+Phone = sc.next();
+Salary = sc.nextLong();
+Period = sc.nextInt();
+staff[i]=new Contract(StaffId,Name,Phone,Salary,Period);
+}
+System.out.println("Staff ID \tName \tPhone \tSalary \tDomain\tPublication \tSkills \tPeriod");
+for(int i=1;i<=n+m+p;i++)
+{
+staff[i].Display();
+System.out.println();
+}
+}
+}
 //005
-public class OverloadingExample {
 
-    // Method Overloading
-    public void printNumber(int num) {
-        System.out.println("The number is: " + num);
-    }
+package Inheritance.converter;
 
-    public void printNumber(double num) {
-        System.out.println("The number is: " + num);
-    }
-
-    // Constructor Overloading
-    public OverloadingExample() {
-        System.out.println("Default constructor called");
-    }
-
-    public OverloadingExample(int num) {
-        System.out.println("Parameterized constructor called with number: " + num);
-    }
-
-    public static void main(String[] args) {
-
-        // Method Overloading
-        OverloadingExample obj = new OverloadingExample();
-        obj.printNumber(5);
-        obj.printNumber(5.5);
-
-        // Constructor Overloading
-        OverloadingExample obj2 = new OverloadingExample();
-        OverloadingExample obj3 = new OverloadingExample(10);
-    }
+class room {
+float L;
+float breadth;
+float area;
+room(float length)
+{
+	L=this.breadth=length;
+	;
 }
-
-//006
-
-package converters.currency;
+room(float length,float breadth)
+{
+	L=length;
+	this.breadth=breadth;
+	
+}
+void calcArea()
+{
+	area=L*breadth;
+}
+float addArea()
+{
+	float totalarea=area+20.0f;
+	return totalarea;
+}
+void display()
+{
+	System.out.println("Area = "+area);
+	
+}
+void display(float a)
+{
+	System.out.println("Total Area = "+a);
+	
+}
+}
 
 public class CurrencyConverter {
-    public static double dollarToINR(double amount) {
-        return amount * 73.15; // 1 USD = 73.15 INR
-    }
+	public static void main(String[] args)
+	{
+		room square=new room(20.5f);
+		room rectangle=new room(15.2f,6.5f);
+		square.calcArea();
+		rectangle.calcArea();
+		float squaretotalarea=square.addArea();
+		float rectangletotalarea=rectangle.addArea();
+		square.display();
+		rectangle.display();
+		square.display(squaretotalarea);
+		rectangle.display(rectangletotalarea);
+		
+	}
 
-    public static double euroToINR(double amount) {
-        return amount * 86.99; // 1 EUR = 86.99 INR
-    }
+}
+//006
+package CurrencyConverter;
 
-    public static double yenToINR(double amount) {
-        return amount * 0.68; // 1 JPY = 0.68 INR
-    }
-
-    public static double inrToDollar(double amount) {
-        return amount / 73.15; // 1 USD = 73.15 INR
-    }
-
-    public static double inrToEuro(double amount) {
-        return amount / 86.99; // 1 EUR = 86.99 INR
-    }
-
-    public static double inrToYen(double amount) {
-        return amount / 0.68; // 1 JPY = 0.68 INR
-    }
+public class CurrencyConverter {
+	
+		public double dollortoinr(double x)
+		{
+			double inr=x*67.86;return inr;
+		}
+		public double inrtodollor(double x)
+		{
+			double dollor=x/67.86;return dollor;
+		}
+		public double eurotoinr(double x)
+		{
+			double inr=x*79.18;return inr;
+		}
+		public double inrtoeuro(double x)
+		{
+			double euro=x/79.18;return euro;
+		}
+		public double yentoinr(double x)
+		{
+			double inr =x*0.62;return inr;
+		}
+		public double inrtoyen(double x)
+		{
+			double yen=x/0.62;return yen;
+		}
+	
 }
 
-
-
-
-package converters.distance;
+package DistanceConverter;
 
 public class DistanceConverter {
-    public static double metersToKm(double distance) {
-        return distance / 1000; // 1 m = 0.001 km
-    }
 
-    public static double kmToMeters(double distance) {
-        return distance * 1000; // 1 km = 1000 m
-    }
+	
+		public double metertokm(double x)
+		{
+			double km=x*0.001; return km;
+		}
+		public double kmtometer(double x)
+		{
+			double meter=x/0.001; return meter;
+		}
+		public double milestokm(double x)
+		{
+			double km=x*1.60934; return km;
+		}
+		public double kmtomiles(double x)
+		{
+			double miles=x/1.60394; return miles;
+		}
 
-    public static double milesToKm(double distance) {
-        return distance * 1.609; // 1 mile = 1.609 km
-    }
+	}
 
-    public static double kmToMiles(double distance) {
-        return distance / 1.609; // 1 km = 0.621 miles
-    }
-}
-
-
-package converters.time;
+package TimeConverter;
 
 public class TimeConverter {
-    public static int hoursToMinutes(int hours) {
-        return hours * 60; // 1 hour = 60 minutes
-    }
+	
+		public double hourstominutes(double x)
+		{
+			double minutes=x*60; return minutes;
+		}
+		public double minutestohours(double x)
+		{
+			double hours=x/60; return hours;
+		}
+		public double hourstoseconds(double x)
+		{
+			double seconds=x*3600; return seconds;
+		}
+		public double secondstohours(double x)
+		{
+			double hours=x/3600; return hours;
+		}
 
-    public static int minutesToHours(int minutes) {
-        return minutes / 60; // 1 hour = 60 minutes
-    }
+	}
 
-    public static int hoursToSeconds(int hours) {
-        return hours * 3600; // 1 hour = 3600 seconds
-    }
-
-    public static int secondsToHours(int seconds) {
-        return seconds / 3600; // 1 hour = 3600 seconds
-    }
-}
+package Converter;
 
 
-import converters.currency.CurrencyConverter;
-import converters.distance.DistanceConverter;
-import converters.time.TimeConverter;
+	
 
-public class Main {
-    public static void main(String[] args) {
-        // Currency Converter
-        double dollarAmount = 100;
-        double euroAmount = 50;
-        double yenAmount = 5000;
+	import DistanceConverter.*;
+	import TimeConverter.*;
+	
+	import java.util.*;
+	import CurrencyConverter.*;
+	public class Converter {
+		public static void main(String args[])
+		{
+			System.out.println("1.Currency Converter");
+			System.out.println("2.Distance Converter");
+			System.out.println("3.Time Converter");
+			Converter cr=new Converter();
+			Scanner c=new Scanner(System.in);
+			int choice=c.nextInt();
+			String op=null;
+			switch(choice)
+			{
+			case 1: cr.Currency();
+			break;
+			case 2: cr.Distance();
+			break;
+			case 3: cr.Time(); break;
+			default:
+				System.out.println("Invalid case");
+				return;
+			}
+		}
+		
 
-        System.out.println(dollarAmount + " USD = " + CurrencyConverter.dollarToINR(dollarAmount) + " INR");
-        System.out.println(euroAmount + " EUR = " + CurrencyConverter.euroToINR(euroAmount) + " INR");
-        System.out.println(yenAmount + " JPY = " + CurrencyConverter.yenToINR(yenAmount) + " INR");
-
-        System.out.println(CurrencyConverter.inrToDollar(7315) + " USD = 7315 INR");
-        System.out.println(CurrencyConverter.inrToEuro(8699) + " EUR = 8699 INR");
-        System.out.println(CurrencyConverter.inrToYen(680)
-
+	public void Currency()
+	{
+		Scanner in=new Scanner(System.in);
+		System.out.println("Welcome to Currency Converter");
+		System.out.println("Enter the amount:");
+		double amt=in.nextInt();
+		CurrencyConverter cc=new CurrencyConverter();
+		System.out.println("DOLLAR="+amt+" is INR="+cc.dollortoinr(amt));
+		System.out.println("INR="+amt+" is DOLLAR="+cc.inrtodollor(amt));
+		System.out.println("EURO="+amt+" is INR="+cc.eurotoinr(amt));
+		System.out.println("YEn="+amt+" is INR="+cc.yentoinr(amt));
+		System.out.println("DOLLAR="+amt+" is INR="+cc.inrtoyen(amt));
+	}
+	public void Distance()
+	{
+		Scanner in=new Scanner(System.in);
+		System.out.println("Welcome to Distance Converter");
+		System.out.println("Enter the distance: ");
+		double dis=in.nextInt();
+		DistanceConverter dd=new DistanceConverter();
+		System.out.println("METER="+dis+" is KM="+dd.metertokm(dis));
+		System.out.println("KM="+dis+" is METER="+dd.kmtometer(dis));
+		System.out.println("MILES="+dis+" is KM="+dd.milestokm(dis));
+		System.out.println("KM="+dis+" is MILES="+dd.kmtomiles(dis));
+		
+		
+		
+	}
+	public void Time()
+	{
+		Scanner out=new Scanner(System.in);
+		System.out.println("Welcome to Time Converter");
+		System.out.println("Enter the time: ");
+		double tim=out.nextInt();
+		TimeConverter tt=new TimeConverter();
+		System.out.println("HOURS="+tim+" is MINUTES="+tt.hourstominutes(tim));
+		System.out.println("MINUTES="+tim+" is HOURS="+tt.minutestohours(tim));
+		System.out.println("HOURS="+tim+" is KM="+tt.hourstoseconds(tim));
+		System.out.println("KM="+tim+" is MILES="+tt.secondstohours(tim));	
+	}
+ 
+	}
 //007
+
+
+
+	
+	
+	
+
+
 
 
 
