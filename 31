@@ -1,0 +1,114 @@
+[8/31, 07:03] prashanth RNSIT: import java.util.Scanner;
+public class Subset
+{
+  private int s[]=new int[10],x[]=new int[10],d,n;
+  public void read()
+  {
+    Scanner sc = new Scanner(System.in); 
+    System.out.println("Enter the number of elements:"); 
+    n = sc.nextInt();
+    System.out.println("Enter the set in increasing order");
+    for(int i=1;i<=n;i++)
+       s[i] = sc.nextInt(); 
+    System.out.println("Enter the subset sum:"); 
+    d = sc.nextInt();
+  }
+  
+  public void check()
+  {
+    int sum=0,i;
+    for(i=1;i<=n;i++)
+      sum+=s[i];
+    if(sum<d || s[i]>d)
+      System.out.println("No subset possible");
+    else 
+    { 
+       System.out.println("Solutions are"); 
+       sumofsub(0,1,sum); 
+    } 
+   }
+
+   void sumofsub(int m,int k,int r) 
+   { 
+    x[k]=1;//Selecting the first weight 
+    if((m+s[k])==d) // Terminal condition and print
+    { 
+      for(int i=1;i<=k;i++) 
+      if(x[i]==1) 
+        System.out.print(" "+s[i]+" "); 
+        System.out.println();; 
+    } 
+    else if(m+s[k]+s[k+1]<=d) //Create left subtree 
+            sumofsub(m+s[k],k+1,r-s[k]);
+            
+    if((m+r-s[k]>=d) && (m+s[k+1]<=d)) // create right subtree
+    { 
+      x[k]=0; // Backtrack and consider k+1 weight
+      sumofsub(m,k+1,r-s[k]); 
+    } 
+ } 
+ 
+ public static void main(String[] args)
+ {
+    Subset s1=new Subset(); 
+    s1.read(); 
+    s1.check(); 
+ } 
+}
+[8/31, 07:03] prashanth RNSIT: import java.util.*; 
+class Hamiltoniancycle
+{	private int adj[][],x[],n; 
+	public Hamiltoniancycle()
+	{ Scanner src = new Scanner(System.in); 
+	  System.out.println("Enter the number of nodes"); 
+	  n=src.nextInt();
+	  x=new int[n]; 
+	  x[0]=0;
+	  for (int i=1;i<n; i++)
+		x[i]= 0;
+	adj=new int[n][n];
+	System.out.println("Enter the adjacency matrix"); 
+	for (int i=0;i<n; i++)
+		for (int j=0; j<n; j++)
+			adj[i][j]=src.nextInt();
+    }
+  public void nextValue (int k)
+  {    int i=0; 
+	while(true)
+	{   x[k] = x[k]+1;
+		if (x[k]==n)
+		   x[k]= 0;
+		if (x[k]==0) 
+			return;	
+		if (adj[x[k-1]][x[k]] == 1)
+			for (i=1; i<= k-1; i++)
+				if (x[i]==x[k])
+					break;
+		if (i==k)
+			if (k<n || k==n && adj[x[n]][1]==1)
+				return;
+         }
+  }
+
+  public void getHCycle(int k)
+  {
+	while(true)
+	{ 	nextValue(k); 
+          if (x[k]==0)
+		return; 
+	  if (k==n-1)
+	  {
+		System.out.println("\nSolution : "); 
+		for (int i=0; i<n; i++)
+			System.out.print((x[i]+1)+" "); 
+			System.out.println(1);
+	  }
+	  else getHCycle(k+1);
+    }
+  }
+  public static void main(String args[])
+  {
+    Hamiltoniancycle obj=new Hamiltoniancycle(); 
+    obj.getHCycle(1);
+  }
+}
