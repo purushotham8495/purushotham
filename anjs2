@@ -1,0 +1,223 @@
+7. Write an AngularJS program to create a simple CRUD application (Create, Read, Update, and 
+Delete) formanaging users. 
+<!DOCTYPE html>
+<html ng-app="crudApp">
+<head>
+ <title>AngularJS CRUD Application</title>
+ <script src="index.js"></script>
+</head>
+<body ng-controller="crudController">
+ <h1>User Management</h1>
+ <form ng-submit="addUser()">
+ Name: 
+ <input type="text" ng-model="name" required>
+ <br>
+ Age: 
+ <input type="number" ng-model="age" required>
+ <br>
+ <button type="submit">Add User</button>
+ </form>
+ <br>
+ <table>
+ <thead>
+ <tr>
+ <th>Name</th>
+ <th>Age</th>
+ <th>Action</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr ng-repeat="user in users">
+ <td>{{ user.name }}</td>
+ <td>{{ user.age }}</td>
+ <td>
+ <button ng-click="editUser(user)">Edit</button>
+ <button ng-click="deleteUser(user)">Delete</button>
+ </td>
+ </tr>
+ </tbody>
+ </table>
+ <script>
+ var app = angular.module('crudApp', []);
+ app.controller('crudController', function ($scope) { 
+ $scope.users = [ 
+ { name: 'Ram', age: 25 }, 
+ { name: 'Sam', age: 30 }, 
+ ]; 
+ $scope.addUser = function () { 
+ $scope.users.push({ name: $scope.name, age: $scope.age }); 
+ $scope.name = ''; 
+ $scope.age = ''; 
+ }; 
+ $scope.editUser = function (user) { 
+ var index = $scope.users.indexOf(user); 
+ var updatedName = prompt('Enter updated name:', user.name); 
+ var updatedAge = prompt('Enter updated age:', user.age); 
+ if (!(updatedName == null && updatedAge == null)) { 
+ var updatedUser = { name: updatedName, age: parseInt(updatedAge) }; 
+ $scope.users.splice(index, 1, updatedUser); 
+ } 
+ }; 
+ $scope.deleteUser = function (user) { 
+ var index = $scope.users.indexOf(user); 
+ $scope.users.splice(index, 1); 
+ }; 
+ }); 
+ </script> 
+</body> 
+</html> 
+8. DevelopAngularJS program to create a login form, with validation for the 
+username and password fields. 
+<html ng-app="loginApp">
+<script src="index.js"></script>
+<body ng-controller="loginController">
+ <h1>Login Form</h1>
+ <form ng-submit="login()">
+ Username 
+ <input type="text" ng-model="username" required>
+ <br>
+ Password 
+ <input type="password" ng-model="password" required>
+ <br>
+ <button type="submit">Login</button>
+ </form>
+ <script>
+ var app = angular.module('loginApp', []);
+ app.controller('loginController', function ($scope) {
+ $scope.login = function () {
+ if ($scope.username == 'ram' && $scope.password == 'ram') {
+ alert('Login successful');
+ } else {
+ alert('Login failed. Invalid username or password.');
+ }
+ };
+ }); 
+ </script>
+</body>
+</html>
+9. Create an AngularJS application that displays a list of employees and their 
+salaries. Allow users to searchfor 
+employees by name and salary. Note: Employee details may be included in the 
+program. 
+<html ng-app="employeeApp">
+<head>
+ <title>Angular JS Employee Search</title>
+ <script src="index.js"></script>
+</head>
+<body ng-controller="employeeController">
+ <h2>Employee List</h2> Search by Name: 
+ <input type="text" ng-model="searchName" />
+ Search by Salary: 
+ <input type="number" ng-model="searchSalary" />
+ <ul>
+ <li ng-repeat="employee in employees|filter:{name:searchName,salary: 
+searchSalary}">
+ {{employee.name}} - Salary : Rs{{employee.salary}} 
+ </li>
+ </ul>
+ <script>
+ var app = angular.module('employeeApp', []); 
+app.controller('employeeController', function ($scope) {
+ $scope.employees = [
+ { name: 'Ram', salary: 50000 },
+ { name: 'abi', salary: 60000 },
+ { name: 'sam', salary: 75000 },
+ { name: 'raj', salary: 55000 }
+ ];
+ $scope.searchName = '';
+ $scope.searchSalary = '';
+ });
+ </script>
+</body>
+</html>
+10. Create Angular JS application that allows users to maintain a collection of items. 
+The application should display the current total number of items, and this count should 
+automatically update as items are added or removed. Users should be able to add items to 
+the collection and remove them as needed. Note: The default values for items may be 
+included in the program. 
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Item Collection App</title>
+ <script src="index.js"></script>
+</head>
+<body ng-app="itemApp">
+ <div ng-controller="ItemController as ctrl">
+ <input type="text" ng-model="ctrl.newItem" placeholder="Enter new item" />
+ <button ng-click="ctrl.addItem()">Add Item</button>
+ <table>
+ <tr ng-repeat="item in ctrl.items">
+ <td> {{ item }} </td>
+ <td><button ng-click="ctrl.removeItem($index)">Remove</button></td>
+ </tr>
+ </table>
+ <p>Total Items: {{ ctrl.items.length }}</p>
+ </div>
+ <script>
+ angular.module('itemApp', [])
+ .controller('ItemController', function () {
+ this.items = ['Item 1', 'Item 2', 'Item 3']; // default items
+ this.newItem = '';
+ this.addItem = function () {
+ if (this.newItem !== '') {
+ this.items.push(this.newItem);
+ this.newItem = '';
+ }
+ };
+ this.removeItem = function (index) {
+ this.items.splice(index, 1);
+ };
+ });
+ </script>
+</body>
+</html>
+11.Create AngularJS application to convert student details to upper case using 
+angular filters. Note: The default 
+details of students may be included in the program. 
+<html ng-app="studentApp">
+<title>Student Name Converter</title>
+<script src="index.js"></script>
+<body ng-controller="studentController">
+ <h2>Student Names</h2>
+ <h3>Original Names:</h3>
+ <ul>
+ <li ng-repeat="name in names">
+ {{name}} 
+ </li>
+ </ul>
+ <h3>Names in Uppercase:</h3>
+ <ul>
+ <li ng-repeat="name in names">
+ {{name | uppercase}} 
+ </li>
+ </ul>
+ <script>
+ var app = angular.module('studentApp', []);
+ app.controller('studentController', function ($scope) {
+ $scope.names = ['Raj', 'Ram', 'Sam'];
+ });
+ </script>
+</body>
+</html>
+12.Create an AngularJS application that displays the date by using date filter 
+parameters 
+<!DOCTYPE html>
+<html ng-app="dateApp">
+<head>
+ <title>Date Display Application</title>
+ <script src="index.js"></script>
+</head>
+<body ng-controller="dateController">
+ <h2>Date Display</h2>
+ <p>Default Format : {{currentDate|date}}</p>
+ <p>Custom Format(yyyy-MM-dd) : {{currentDate|date : 'yyyy-MM-dd'}}</p>
+ <p>Short Date : {{currentDate|date : 'shortDate'}}</p>
+ <p>Full Date : {{currentDate|date : 'fullDate'}}</p>
+ <script>
+ var app = angular.module('dateApp', []); app.controller('dateController', 
+function ($scope) {
+ $scope.currentDate = new Date();
+ });
+ </script>
+</body>
+</html
